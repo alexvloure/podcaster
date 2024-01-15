@@ -1,3 +1,9 @@
+export interface iTunesPodcastListResponse {
+  feed: {
+    entry: Podcast[];
+  };
+}
+
 export interface Podcast {
   'im:name': IMName;
   'im:image': IMImage[];

@@ -18,6 +18,7 @@ export const AppProviders: React.FC<React.PropsWithChildren> = ({
 
   const localStoragePersister = createSyncStoragePersister({
     storage: window.localStorage,
+    key: 'podcaster-data',
   });
 
   return (

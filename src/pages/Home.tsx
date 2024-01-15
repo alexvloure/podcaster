@@ -1,34 +1,23 @@
+import { fetchPodcastData } from '@/api/fetchPodcastData';
 import { PodcastCard } from '@/components/Cards/PodcastCard';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
-import { Podcast } from '@/models/Podcast';
+import { Podcast, iTunesPodcastListResponse } from '@/models/Podcast';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-
-type iTunesResponse = {
-  feed: {
-    entry: Podcast[];
-  };
-};
-
-const fetchPodcastList = async () => {
-  const response = await fetch(
-    'https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json'
-  );
-  const data: iTunesResponse = await response.json();
-  return data;
-};
 
 export const Home = () => {
   const [podcasts, setPodcasts] = useState<Podcast[]>([]);
 
-  const { data } = useQuery({
+  const { data } = useQuery<iTunesPodcastListResponse>({
     queryKey: ['podcasts'],
-    queryFn: fetchPodcastList,
+    queryFn: fetchPodcastData,
   });
 
   useEffect(() => {
-    if (data) setPodcasts(data?.feed.entry);
+    if (data) {
+      setPodcasts(data.feed.entry);
+    }
   }, [data]);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
