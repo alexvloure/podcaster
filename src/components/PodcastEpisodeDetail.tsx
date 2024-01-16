@@ -1,4 +1,4 @@
-import { fetchPodcastDetail } from '@/api/fetchPodcastDetail';
+import { fetchPodcastEpisodes } from '@/api/fetchPodcastEpisodes';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Episode, iTunesPodcastEpisodeResponse } from '@/models/Episode';
 import { useQuery } from '@tanstack/react-query';
@@ -13,7 +13,7 @@ export const PodcastEpisodeDetail = () => {
   const sanitizer = DOMPurify.sanitize;
   const { data, isLoading } = useQuery<iTunesPodcastEpisodeResponse>({
     queryKey: ['podcastDetail', id],
-    queryFn: () => fetchPodcastDetail(id!),
+    queryFn: () => fetchPodcastEpisodes(id!),
   });
 
   useEffect(() => {

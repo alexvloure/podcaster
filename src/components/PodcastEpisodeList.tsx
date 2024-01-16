@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Episode, iTunesPodcastEpisodeResponse } from '@/models/Episode';
 import { ColumnDef } from '@tanstack/react-table';
 import { DataTable } from '@/components/ui/data-table';
-import { fetchPodcastDetail } from '@/api/fetchPodcastDetail';
+import { fetchPodcastEpisodes } from '@/api/fetchPodcastEpisodes';
 import { PodcastEpisodeListSkeleton } from '@/components/Skeletons/PodcastEpisodeListSkeleton';
 
 export const PodcastEpisodeList = () => {
@@ -13,7 +13,7 @@ export const PodcastEpisodeList = () => {
 
   const { data, isLoading } = useQuery<iTunesPodcastEpisodeResponse>({
     queryKey: ['podcastDetail', id],
-    queryFn: () => fetchPodcastDetail(id!),
+    queryFn: () => fetchPodcastEpisodes(id!),
   });
 
   const columns: ColumnDef<Episode>[] = [

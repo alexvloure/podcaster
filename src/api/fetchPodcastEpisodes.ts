@@ -1,4 +1,4 @@
-export const fetchPodcastDetail = async (podcastId: string) => {
+export const fetchPodcastEpisodes = async (podcastId: string) => {
   const results = await fetch(
     `https://corsproxy.io/?${encodeURIComponent(
       `https://itunes.apple.com/lookup?id=${podcastId}&country=US&media=podcast&entity=podcastEpisode`
