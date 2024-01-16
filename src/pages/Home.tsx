@@ -1,15 +1,17 @@
 import { fetchPodcastData } from '@/api/fetchPodcastData';
 import { PodcastCard } from '@/components/Cards/PodcastCard';
+import { PodcastCardSkeleton } from '@/components/Skeletons/PodcastCardSkeleton';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Podcast, iTunesPodcastListResponse } from '@/models/Podcast';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 export const Home = () => {
   const [podcasts, setPodcasts] = useState<Podcast[]>([]);
 
-  const { data } = useQuery<iTunesPodcastListResponse>({
+  const { data, isLoading } = useQuery<iTunesPodcastListResponse>({
     queryKey: ['podcasts'],
     queryFn: fetchPodcastData,
   });
@@ -41,15 +43,22 @@ export const Home = () => {
       <div className="mt-0 mr-0 mb-4 ml-auto flex justify-end items-center gap-2">
         <Badge className="h-6">{podcasts?.length}</Badge>
         <Input
-          className="w-64"
+          className="w-full sm:w-64"
           placeholder="Filter podcasts..."
           onChange={handleSearch}
         />
       </div>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {podcasts?.map((podcast) => (
-          <PodcastCard key={podcast.id.attributes['im:id']} podcast={podcast} />
-        ))}
+        {isLoading
+          ? Array(12)
+              .fill(0)
+              .map(() => <PodcastCardSkeleton key={uuidv4()} />)
+          : podcasts?.map((podcast) => (
+              <PodcastCard
+                key={podcast.id.attributes['im:id']}
+                podcast={podcast}
+              />
+            ))}
       </div>
     </>
   );

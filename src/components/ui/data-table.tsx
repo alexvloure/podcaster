@@ -1,4 +1,5 @@
 import {
+  Cell,
   ColumnDef,
   flexRender,
   getCoreRowModel,
@@ -24,17 +25,24 @@ import {
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  handleRowClick: (value: Cell<TData, unknown>[]) => void;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  handleRowClick,
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    initialState: {
+      columnVisibility: {
+        trackId: false,
+      },
+    },
   });
 
   return (
@@ -65,8 +73,9 @@ export function DataTable<TData, TValue>({
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
+                  onClick={() => handleRowClick(row.getAllCells())}
                   key={row.id}
-                  data-state={row.getIsSelected() && 'selected'}>
+                  className="cursor-pointer">
                   {row.getVisibleCells().map((cell) => (
                     <TableCell className="text-left" key={cell.id}>
                       {flexRender(

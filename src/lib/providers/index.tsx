@@ -3,6 +3,7 @@ import { ThemeProvider } from './theme-provider';
 import { QueryClient } from '@tanstack/react-query';
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister';
+import { LoadingProvider } from './loading';
 
 export const AppProviders: React.FC<React.PropsWithChildren> = ({
   children,
@@ -30,7 +31,7 @@ export const AppProviders: React.FC<React.PropsWithChildren> = ({
             persister: localStoragePersister,
             maxAge: 1000 * 60 * 60 * 24, // 24 hours
           }}>
-          {children}
+          <LoadingProvider>{children}</LoadingProvider>
         </PersistQueryClientProvider>
       </ThemeProvider>
     </BrowserRouter>

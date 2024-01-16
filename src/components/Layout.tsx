@@ -8,7 +8,7 @@ import {
 // import { LoadingSpinner } from '@/components/icons/LoadingSpinner';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Separator } from '@/components/ui/separator';
-import { LoadingIndicator } from '../LoadingIndicator';
+import { LoadingIndicator } from './LoadingIndicator';
 
 export const Layout: React.FC = () => {
   const navigate = useNavigate();
@@ -21,8 +21,8 @@ export const Layout: React.FC = () => {
             <NavigationMenuItem>
               <NavigationMenuLink
                 onClick={() => navigate('/')}
-                className={navigationMenuTriggerStyle()}>
-                Podcaster
+                className={`${navigationMenuTriggerStyle()}, cursor-pointer`}>
+                <h1 className="text-2xl italic text-primary">Podcaster</h1>
               </NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>
