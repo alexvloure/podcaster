@@ -43,5 +43,22 @@ This will run Podcaster in development mode.
 This will run the production bundle of Podcaster.
 
 ```bash
-npm run serve
+  npm run serve
+```
+
+## Running unit tests
+
+To run unit tests, execute the following command
+
+```bash
+  npm run test
+```
+
+
+## Check code coverage
+
+This will output the % of code coverage.
+
+```bash
+  npm run coverage
 ```
