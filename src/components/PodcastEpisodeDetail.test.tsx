@@ -67,4 +67,19 @@ describe('PodcastEpisodeDetail', () => {
     const noEpisodeInfo = screen.getByText(/No episode info found/);
     expect(noEpisodeInfo).toBeInTheDocument();
   });
+  it('should render "no episode info found" if episode is empty', () => {
+    (useGetPodcastEpisodeList as Mock).mockReturnValue({
+      data: { results: [] },
+      isLoading: false,
+    });
+    render(
+      <BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+          <PodcastEpisodeDetail />
+        </QueryClientProvider>
+      </BrowserRouter>
+    );
+    const noEpisodeInfo = screen.getByText(/No episode info found/);
+    expect(noEpisodeInfo).toBeInTheDocument();
+  });
 });

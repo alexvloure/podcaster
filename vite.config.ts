@@ -23,6 +23,7 @@ export default defineConfig({
         '**/src/context/*',
         '**/src/lib/providers/*',
         '**/src/routes/*',
+        '**/src/pages/PodcastLayout.tsx',
       ],
     },
   },

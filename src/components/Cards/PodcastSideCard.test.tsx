@@ -9,11 +9,13 @@ import { mockPodcasts } from '@/mocks/PodcastData';
 vi.mock('@/api/useGetPodcasts');
 const queryClient = new QueryClient();
 
+const mockedUseNavigate = vi.fn();
 vi.mock('react-router-dom', async () => {
   const actual = await import('react-router-dom');
   return {
     ...actual,
     useParams: vi.fn().mockReturnValue({ id: '1' }),
+    useNavigate: () => mockedUseNavigate,
   };
 });
 
@@ -62,5 +64,36 @@ describe('PodcastSideCard', () => {
     );
     const noPodcastInfoFound = screen.getByText(/No podcast/);
     expect(noPodcastInfoFound).toBeInTheDocument();
+  });
+  it('should render "no podcast info found" if podcast is null', () => {
+    (useGetPodcasts as Mock).mockReturnValue({
+      data: { feed: { entry: [] } },
+      isLoading: false,
+    });
+    render(
+      <BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+          <PodcastSideCard />
+        </QueryClientProvider>
+      </BrowserRouter>
+    );
+    const noPodcastInfoFound = screen.getByText(/No podcast/);
+    expect(noPodcastInfoFound).toBeInTheDocument();
+  });
+  it('should call navigate when clicking on the podcast cover', () => {
+    (useGetPodcasts as Mock).mockReturnValue({
+      data: mockPodcasts,
+      isLoading: false,
+    });
+    render(
+      <BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+          <PodcastSideCard />
+        </QueryClientProvider>
+      </BrowserRouter>
+    );
+    const podcastCover = screen.getByAltText(/Podcast cover/);
+    podcastCover.click();
+    expect(mockedUseNavigate).toHaveBeenCalled();
   });
 });
