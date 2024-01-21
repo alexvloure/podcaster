@@ -12,6 +12,7 @@ export const routes = () => (
       <Route path={'podcast/:id'} element={<PodcastLayout />}>
         <Route index element={<PodcastEpisodeList />} />
         <Route path={'episode/:episodeId'} element={<PodcastEpisodeDetail />} />
+        <Route path={'*'} element={<Navigate to="/" replace />} />
       </Route>
     </Route>
     <Route path={'*'} element={<Navigate to="/" replace />} />

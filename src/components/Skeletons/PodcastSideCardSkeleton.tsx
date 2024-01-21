@@ -4,7 +4,7 @@ import { Separator } from '@/components/ui/separator';
 
 export const PodcastSideCardSkeleton: React.FC = () => {
   return (
-    <Card className="p-5 w-full sm:col-span-3">
+    <Card data-testid="skeleton" className="p-5 w-full sm:col-span-3">
       <Skeleton className="w-[150px] h-[150px] m-auto bg-secondary" />
       <Separator className="my-4" />
       <CardHeader className="text-start p-0">

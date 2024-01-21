@@ -5,7 +5,6 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
-// import { LoadingSpinner } from '@/components/icons/LoadingSpinner';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Separator } from '@/components/ui/separator';
 import { LoadingIndicator } from './LoadingIndicator';

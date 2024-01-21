@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const PodcastEpisodeDetailSkeleton: React.FC = () => {
   return (
-    <Card className="w-full col-span-7 self-start">
+    <Card data-testid="skeleton" className="w-full col-span-7 self-start">
       <CardHeader>
         <Skeleton className="w-64 h-6 bg-secondary" />
       </CardHeader>
