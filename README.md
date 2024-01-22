@@ -1,4 +1,5 @@
 
+
 # Podcaster
 Podcaster is a small app that allows the user to listen the 100 top podcasts of the moment. It's developed with React + Vite and ui.shadcn.com components are used to style.
 
@@ -62,3 +63,18 @@ This will output the % of code coverage.
 ```bash
   npm run coverage
 ```
+
+
+## Running e2e tests
+
+To run e2e tests, we have two options:
+
+- Run on the terminal
+```bash
+  npx cypress run test_name.cy.ts
+```
+- Run on the GUI:
+```bash
+  npx cypress open
+```
+After executing the command above, simply select the desired test to run it.
