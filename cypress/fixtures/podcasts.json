@@ -1,0 +1,60 @@
+{
+  "feed": {
+    "entry": [
+      {
+        "id": {
+          "attributes": {
+            "im:id": "1"
+          }
+        },
+        "im:name": {
+          "label": "Podcast 1"
+        },
+        "im:artist": {
+          "label": "Artist 1"
+        },
+        "im:image": [
+          {
+            "label": "https://picsum.photos/200"
+          },
+          {
+            "label": "https://picsum.photos/200"
+          },
+          {
+            "label": "https://picsum.photos/200"
+          }
+        ],
+        "summary": {
+          "label": "Summary 1"
+        }
+      },
+      {
+        "id": {
+          "attributes": {
+            "im:id": "2"
+          }
+        },
+        "im:name": {
+          "label": "Podcast 2"
+        },
+        "im:artist": {
+          "label": "Artist 2"
+        },
+        "im:image": [
+          {
+            "label": "https://picsum.photos/201"
+          },
+          {
+            "label": "https://picsum.photos/201"
+          },
+          {
+            "label": "https://picsum.photos/201"
+          }
+        ],
+        "summary": {
+          "label": "Summary 2"
+        }
+      }
+    ]
+  }
+}

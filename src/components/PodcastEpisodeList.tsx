@@ -34,7 +34,9 @@ export const PodcastEpisodeList = () => {
       header: 'Duration',
       cell: (cell) => {
         const date = new Date(cell.renderValue() as string);
-        return <span>{date.toLocaleTimeString()}</span>;
+        return (
+          <span>{date.toLocaleTimeString('es-ES', { timeZone: 'UTC' })}</span>
+        );
       },
     },
   ];
